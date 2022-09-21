@@ -1,21 +1,3 @@
--- 19/9/2022 using new ct format
-DROP TABLE ctrials_ph1 CASCADE;
-CREATE TABLE ctrials_ph1 (
-  nctnumber     varchar,
-  title         varchar,
-  status        varchar,
-  conditions    varchar,
-  interventions varchar,
-  sponsor       varchar,
-  collaborators varchar,
-  studytype     varchar,
-  start_date    varchar,
-  studyresults  varchar,
-  primary_completion_date   varchar,
-  completion_date           varchar
-);
-copy ctrials_ph1 from '/tmp/stg-studies.csv'  WITH CSV HEADER;
-
 DROP TABLE ctrials_stats_phases CASCADE;
 CREATE TABLE ctrials_stats_phases (
   rank          varchar,
@@ -46,7 +28,7 @@ update ctrials_stats_phases set enrollment = to_number(n, '99999')::integer;
 CREATE or REPLACE function ct_duration_years(v_start varchar, v_end varchar) returns float as
 $BODY$
       DECLARE
-      	v_years float;
+       v_years float;
         w_start date;
         w_end   date;
         j int;
@@ -79,7 +61,7 @@ $BODY$
    CREATE or REPLACE function ct_grouping(v_number_studies int) returns int as
    $BODY$
          DECLARE
-         	v_years int;
+           v_years int;
            j int;
            k int;
          BEGIN
